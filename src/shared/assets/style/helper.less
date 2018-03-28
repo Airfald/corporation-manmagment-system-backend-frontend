@@ -1,0 +1,43 @@
+/*
+ * 辅助样式，复写的快捷样式
+ * @Author: 欧贺福
+ * @Date: 2018-03-28 18:35:00
+ * @Last Modified by: 欧贺福
+ * @Last Modified time: 2018-03-28 18:36:24
+ */
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+ /* 清除浮动 */
+ .clear() {
+  &:after {
+    content: '\20';
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+
+/* 单行文字溢出虚点显示 */
+.ell() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow:hidden;
+}
+
+/* 遮盖层 */
+.mask(@a: 0.6) {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, @a);
+  z-index: 450;
+}
