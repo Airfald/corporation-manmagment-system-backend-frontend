@@ -1,5 +1,7 @@
 <template>
-  <div>hello啊！baby!</div>
+  <el-container>
+    <el-aside></el-aside>
+  </el-container>
 </template>
 
 <script>

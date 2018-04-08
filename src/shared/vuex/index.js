@@ -9,7 +9,7 @@ import actions from './store/actions'
 
 Vue.use(Vuex)
 
-// root
+// root vuex
 const wholeActions = Object.assign({}, actions)
 
 const store = new Vuex.Store({

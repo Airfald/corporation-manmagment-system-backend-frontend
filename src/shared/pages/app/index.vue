@@ -1,12 +1,18 @@
 <template>
-  <div id="app">
+  <el-container id="app">
+    <!-- 侧边栏 -->
+    <app-sidebar></app-sidebar>
     <router-view/>
-  </div>
+  </el-container>
 </template>
 
 <script>
+import AppSidebar from './app-sidebar'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    AppSidebar
+  }
 }
 </script>
 
