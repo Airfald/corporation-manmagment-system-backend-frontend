@@ -12,6 +12,7 @@
       </el-aside>
       <!-- 内容部分 -->
       <el-main>
+        <app-breadcrumb></app-breadcrumb>
         <router-view/>
       </el-main>
     </el-container>
@@ -21,11 +22,13 @@
 <script>
 import AppSidebar from './app-sidebar'
 import AppHeader from './app-header'
+import AppBreadcrumb from './app-breadcrumb'
 export default {
   name: 'App',
   components: {
     AppSidebar,
-    AppHeader
+    AppHeader,
+    AppBreadcrumb
   }
 }
 </script>
