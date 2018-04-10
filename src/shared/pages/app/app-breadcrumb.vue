@@ -7,10 +7,10 @@
         :key="index"
         :to="{ path: item.to }">
         {{ item.title }}
-        </el-breadcrumb-item>
+      </el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 其它部分 -->
-    <slot><slot>
+    <slot></slot>
   </div>
 </template>
 
