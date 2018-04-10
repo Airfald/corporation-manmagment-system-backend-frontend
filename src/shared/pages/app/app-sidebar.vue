@@ -75,10 +75,12 @@ export default {
     }
   },
   methods: {
+    // 跳转到相应的路由页面
     redirectPage (route) {
+      this.$router.push({
+        name: route.name
+      })
     }
-  },
-  created () {
   }
 }
 </script>

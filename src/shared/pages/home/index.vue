@@ -1,10 +1,11 @@
 <template>
-  <el-container>
-    <el-aside></el-aside>
-  </el-container>
+  <div class="home">
+    home页面
+  </div>
 </template>
 
 <script>
 export default {
+  name: 'home'
 }
 </script>
