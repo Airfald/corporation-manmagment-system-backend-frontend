@@ -5,11 +5,11 @@
     active-text-color="#409eff"
     text-color="#ffffff">
       i商机
-    <div><img src="../../assets/images/logo.jpg"></div>
+    <!-- <div><img height="100%" src="../../assets/images/logo.jpg"></div> -->
     <el-dropdown trigger="click">
       <div>
         <img>
-        <span class="user-name">{{ userInfo.name }}</span>
+        <span class="user-name">paulo</span>
         <i class="el-icon-arrow-down el-icon--right"></i>
       </div>
       <el-dropdown-menu slot="dropdown">

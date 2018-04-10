@@ -5,7 +5,10 @@
 </template>
 
 <script>
+import getComponentName from 'shared@/config/components-define'
 export default {
-  name: 'home'
+  name: getComponentName('home'),
+  created () {
+  }
 }
 </script>

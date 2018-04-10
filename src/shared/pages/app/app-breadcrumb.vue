@@ -2,11 +2,8 @@
   <div class="breadcrumb-wrapper">
     <el-breadcrumb separator=">">
       <div class="el-breadcrumb-head">您的位置：</div>
-      <el-breadcrumb-item
-        v-for="(item, index) in options"
-        :key="index"
-        :to="{ path: item.to }">
-        {{ item.title }}
+      <el-breadcrumb-item>
+        首页
       </el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 其它部分 -->
