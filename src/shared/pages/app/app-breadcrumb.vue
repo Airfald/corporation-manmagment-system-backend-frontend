@@ -12,8 +12,9 @@
 </template>
 
 <script>
+import getComponentName from 'shared@/config/components-define'
 export default {
-  name: 'breadcrumb-wrap',
+  name: getComponentName('app-breadcrumb'),
   props: {
   }
 }

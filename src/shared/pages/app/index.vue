@@ -23,8 +23,9 @@
 import AppSidebar from './app-sidebar'
 import AppHeader from './app-header'
 import AppBreadcrumb from './app-breadcrumb'
+import getComponentName from 'shared@/config/components-define'
 export default {
-  name: 'App',
+  name: getComponentName('app'),
   components: {
     AppSidebar,
     AppHeader,

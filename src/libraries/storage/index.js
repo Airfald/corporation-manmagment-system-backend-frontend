@@ -3,9 +3,10 @@
  * @Author: 欧贺福
  * @Date: 2018-04-10 16:56:23
  * @Last Modified by: 欧贺福
- * @Last Modified time: 2018-04-10 17:01:22
+ * @Last Modified time: 2018-04-11 08:59:33
+/**
+ * @description 查找storage的功能是否存储了东西
+ * @param {any} item
  */
-
-(() => {
-  console.log('ok')
-})()
+function findStorage (item) {
+}
