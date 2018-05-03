@@ -7,7 +7,11 @@ import store from 'shared@/vuex'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+// 插件服务
+import storage from '@/libraries/storage'
+
 Vue.use(ElementUI)
+Vue.use(storage)
 
 Vue.config.productionTip = false
 

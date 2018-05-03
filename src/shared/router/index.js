@@ -5,10 +5,11 @@ import activityRoutes from './routes/activity'
 import announcementRoutes from './routes/announcement'
 import corporationRoutes from './routes/corporation'
 import manageRoutes from './routes/manage'
+import loginRoutes from './routes/login'
 
 Vue.use(Router)
 
-const routes = Array.prototype.concat(homeRoutes, activityRoutes, announcementRoutes, corporationRoutes, manageRoutes)
+const routes = Array.prototype.concat(homeRoutes, loginRoutes, activityRoutes, announcementRoutes, corporationRoutes, manageRoutes)
 
 export default new Router({
   routes

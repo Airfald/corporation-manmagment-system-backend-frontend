@@ -12,10 +12,14 @@
       </el-aside>
       <!-- 内容部分 -->
       <el-main>
-        <app-breadcrumb></app-breadcrumb>
+        <!-- <app-breadcrumb></app-breadcrumb> -->
         <router-view/>
       </el-main>
     </el-container>
+    <!-- 底部部分 -->
+    <el-footer v-if="false">
+      <app-footer></app-footer>
+    </el-footer>
   </el-container>
 </template>
 
@@ -23,13 +27,17 @@
 import AppSidebar from './app-sidebar'
 import AppHeader from './app-header'
 import AppBreadcrumb from './app-breadcrumb'
+import AppFooter from './app-footer'
 import getComponentName from 'shared@/config/components-define'
 export default {
   name: getComponentName('app'),
   components: {
     AppSidebar,
     AppHeader,
-    AppBreadcrumb
+    AppBreadcrumb,
+    AppFooter
+  },
+  methods: {
   }
 }
 </script>

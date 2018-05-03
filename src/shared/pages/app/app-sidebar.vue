@@ -32,7 +32,7 @@ export default {
         name: '首页',
         key: 'home',
         route: {
-          name: 'home-page'
+          name: 'home'
         }
       }, {
         name: '社团',
@@ -44,7 +44,7 @@ export default {
         name: '活动',
         key: 'activity',
         route: {
-          name: 'activity-index'
+          name: 'activity-list'
         }
       }, {
         name: '公告',
@@ -87,7 +87,7 @@ export default {
 
 <style lang="less">
 .app-sidebar {
-  width: 150px;
+  width: 150px !important;
   height: 100%;
   overflow: auto;
 
