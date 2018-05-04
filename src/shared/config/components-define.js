@@ -3,7 +3,7 @@
  * @Author: 欧贺福
  * @Date: 2018-04-10 17:24:46
  * @Last Modified by: 欧贺福
- * @Last Modified time: 2018-05-02 23:04:11
+ * @Last Modified time: 2018-05-03 22:14:38
  */
 
 const COMPONENTS_DEFINE = {}
@@ -21,6 +21,14 @@ COMPONENTS_DEFINE['home'] = 'home'
 COMPONENTS_DEFINE['login'] = 'login'
 // activity
 COMPONENTS_DEFINE['activity-list'] = 'activity-list'
+COMPONENTS_DEFINE['activity-detail'] = 'activity-detail'
+// corporation
+COMPONENTS_DEFINE['corporation-list'] = 'corporation-list'
+COMPONENTS_DEFINE['corporation-detail'] = 'corporation-detail'
+// leaveMessage
+COMPONENTS_DEFINE['leave-message-list'] = 'leave-message-list'
+// personal
+COMPONENTS_DEFINE['personal'] = 'personal'
 
 function getComponentName (key) {
   if (key in COMPONENTS_DEFINE) {

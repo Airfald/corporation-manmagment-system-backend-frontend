@@ -109,7 +109,7 @@
     <div class="corporation-description mt50">
       <div class="corporation-description__header">
         <img src="../../assets/images/corporation-logo.png">
-        <span>社团简介</span>
+        <span>学社联简介</span>
       </div>
       <el-collapse>
         <el-collapse-item title="简介" name="1">

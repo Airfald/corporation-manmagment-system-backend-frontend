@@ -38,7 +38,7 @@ export default {
         name: '社团',
         key: 'corporation',
         route: {
-          name: 'corporation'
+          name: 'corporation-list'
         }
       }, {
         name: '活动',
@@ -47,16 +47,16 @@ export default {
           name: 'activity-list'
         }
       }, {
-        name: '公告',
+        name: '我要留言',
         key: 'announcement',
         route: {
-          name: 'announcement-index'
+          name: 'leave-message-list'
         }
       }, {
-        name: '社团风采',
+        name: '个人中心',
         key: 'preview',
         route: {
-          name: 'corportation-show'
+          name: 'personal'
         }
       }],
       managmentList: [{
