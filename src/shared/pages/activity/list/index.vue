@@ -1,7 +1,13 @@
 <template>
   <div class="activity-list">
     <div class="activity-list__header">活动列表</div>
+      <el-button
+        class="mt15"
+        type="primary"
+        size="small"
+        @click="createActivity">新建活动</el-button>
       <el-table
+        class="mt15"
         stripe
         :data="activityList"
         style="width: 100%">
@@ -79,6 +85,11 @@ export default {
     jumpDetail (row) {
       this.$router.push({
         name: 'activity-detail'
+      })
+    },
+    createActivity () {
+      this.$router.push({
+        name: 'activity-create'
       })
     }
   },

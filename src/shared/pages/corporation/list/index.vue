@@ -1,19 +1,22 @@
 <template>
   <div class="corporation-list">
     <div class="corporation-list__header">社团列表</div>
-      <div class="corporation-list__content">
-        <div
-          class="corporation-list__item"
-          v-for="(item, index) in corporationList"
-          :key="index"
-          @click="jumpDetail">
-          <div><img width="100%" height="100%" src="../../../assets/images/corporation.jpg"></div>
-          <div class="corporation-txt">
-            <h4 class="corporation-list__item-name">{{ item.name }}</h4>
-            <p>欢迎加入我们协会</p>
-          </div>
+    <div class="corporation-list__content clear">
+    <div class="mt15">
+      <el-button type="primary" size="small" @click="createdCorporation">新建社团</el-button>
+    </div>
+      <div
+        class="corporation-list__item"
+        v-for="(item, index) in corporationList"
+        :key="index"
+        @click="jumpDetail">
+        <div><img width="100%" height="100%" src="../../../assets/images/corporation.jpg"></div>
+        <div class="corporation-txt">
+          <h4 class="corporation-list__item-name">{{ item.name }}</h4>
+          <p>欢迎加入我们协会</p>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -34,6 +37,11 @@ export default {
     jumpDetail (row) {
       this.$router.push({
         name: 'corporation-detail'
+      })
+    },
+    createdCorporation () {
+      this.$router.push({
+        name: 'corporation-create'
       })
     }
   },

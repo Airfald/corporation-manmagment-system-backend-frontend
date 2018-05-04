@@ -18,7 +18,8 @@
       <el-menu-item
         v-for="(item, index) in managmentList"
         :key="index"
-        :index="item.key">{{ item.name }}</el-menu-item>
+        :index="item.key"
+        @click="redirectPage(item.route)">{{ item.name }}</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>
@@ -63,13 +64,13 @@ export default {
         name: '数据统计与分析',
         key: 'statistics-analysis',
         route: {
-          name: 'statistiics-analysis'
+          name: 'statistics-analysis'
         }
       }, {
-        name: '社团管理',
-        key: 'corportation-managment',
+        name: '学生管理',
+        key: 'student-list',
         route: {
-          name: 'corportation-managment'
+          name: 'student-list'
         }
       }]
     }

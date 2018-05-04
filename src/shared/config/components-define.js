@@ -3,7 +3,7 @@
  * @Author: 欧贺福
  * @Date: 2018-04-10 17:24:46
  * @Last Modified by: 欧贺福
- * @Last Modified time: 2018-05-03 22:14:38
+ * @Last Modified time: 2018-05-04 20:01:47
  */
 
 const COMPONENTS_DEFINE = {}
@@ -29,6 +29,11 @@ COMPONENTS_DEFINE['corporation-detail'] = 'corporation-detail'
 COMPONENTS_DEFINE['leave-message-list'] = 'leave-message-list'
 // personal
 COMPONENTS_DEFINE['personal'] = 'personal'
+// echart
+COMPONENTS_DEFINE['activity-rank'] = 'activity-rank'
+COMPONENTS_DEFINE['corporation-number'] = 'corporation-number'
+COMPONENTS_DEFINE['statistics-analysis'] = 'statistics-analysis'
+COMPONENTS_DEFINE['student-detail'] = 'student-detail'
 
 function getComponentName (key) {
   if (key in COMPONENTS_DEFINE) {
