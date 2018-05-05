@@ -49,7 +49,7 @@
         </el-table-column>
       </el-table>
       <!-- 分页组件 -->
-      <el-pagination
+      <!-- <el-pagination
         class="mt25"
         slot="right"
         layout="total, prev, pager, next, jumper"
@@ -57,7 +57,7 @@
         :total="pageTotal"
         :current-page.sync="currentPage"
         @current-change="changePageIndex">
-      </el-pagination>
+      </el-pagination> -->
   </div>
 </template>
 
@@ -67,14 +67,7 @@ export default {
   name: getComponentName('activity-list'),
   data () {
     return {
-      activityList: [{
-        name: '街舞社团招新了！',
-        address: '海园广场',
-        corporation: '街舞社',
-        time: '2018-5-12',
-        chargeName: '小小',
-        chargePhone: '13785698956'
-      }],
+      activityList: [],
       pageTotal: 32,
       currentPage: 1
     }
@@ -84,19 +77,42 @@ export default {
     },
     jumpDetail (row) {
       this.$router.push({
-        name: 'activity-detail'
+        name: 'activity-detail',
+        params: {
+          activityId: row.id
+        }
       })
     },
     createActivity () {
       this.$router.push({
         name: 'activity-create'
       })
+    },
+    getActivityList () {
+      this.$store.dispatch('activity-activityList', {
+        params: {
+          pageSize: 1000,
+          pageNum: 1
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          response.data.value.list.forEach(item => {
+            this.activityList.push({
+              id: item.id,
+              name: item.name,
+              address: item.address,
+              corporation: item.corporation,
+              time: item.time,
+              chargeName: item.chargeName,
+              chargeTelphone: item.chargeTelphone
+            })
+          })
+        }
+      })
     }
   },
   created () {
-    for (let index = 0; index < 5; index++) {
-      this.activityList = this.activityList.concat(this.activityList)
-    }
+    this.getActivityList()
   }
 }
 </script>

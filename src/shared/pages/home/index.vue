@@ -2,9 +2,6 @@
   <div class="home">
     <!-- 社团图片 -->
     <el-carousel :interval="3000" type="card" height="350px">
-      <!-- <el-carousel-item v-for="(item, index) in bannerImgs" :key="index">
-        <img height="100%" src="../../assets/images/banner.jpg">
-      </el-carousel-item> -->
       <el-carousel-item>
         <img width="100%" height="100%" src="../../assets/images/banner1.jpg">
       </el-carousel-item>
@@ -168,48 +165,48 @@ export default {
       }, {
         url: '../../assets/images/banner5.jpg'
       }],
-      latestActivityData: [{
-        name: '科技知识竞赛',
-        time: '2018-5-12',
-        address: '逸夫楼',
-        corporation: '科技部'
-      }, {
-        name: '科技知识竞赛',
-        time: '2018-5-12',
-        address: '逸夫楼',
-        corporation: '科技部'
-      }, {
-        name: '科技知识竞赛',
-        time: '2018-5-12',
-        address: '逸夫楼',
-        corporation: '科技部'
-      }, {
-        name: '科技知识竞赛',
-        time: '2018-5-12',
-        address: '逸夫楼',
-        corporation: '科技部'
-      }, {
-        name: '科技知识竞赛',
-        time: '2018-5-12',
-        address: '逸夫楼',
-        corporation: '科技部'
-      }]
+      latestActivityData: []
     }
   },
   methods: {
     jumpDetail (row) {
-      console.log(row)
       this.$router.push({
-        name: 'activity-detail'
+        name: 'activity-detail',
+        params: {
+          activityId: row.id
+        }
       })
     },
     jumpActivityList () {
       this.$router.push({
         name: 'activity-list'
       })
+    },
+    getActivityList () {
+      this.$store.dispatch('activity-activityList', {
+        params: {
+          pageSize: 10,
+          pageNum: 1
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          response.data.value.list.forEach((item, index) => {
+            if (index < 5) {
+              this.latestActivityData.push({
+                id: item.id,
+                name: item.name,
+                time: item.time,
+                address: item.address,
+                corporation: item.corporation
+              })
+            }
+          })
+        }
+      })
     }
   },
   created () {
+    this.getActivityList()
   }
 }
 </script>

@@ -9,6 +9,12 @@
       </el-alert>
       <el-input
         class="mt15"
+        placeholder="请输入社团名称"
+        v-model="activity.corporation">
+        <template slot="prepend">举办社团：</template>
+      </el-input>
+      <el-input
+        class="mt15"
         placeholder="请输入活动名称"
         v-model="activity.name">
         <template slot="prepend">活动名称：</template>
@@ -28,13 +34,13 @@
       <el-input
         class="mt15"
         placeholder="请输入负责人名称"
-        v-model="activity.name">
+        v-model="activity.chargeName">
         <template slot="prepend">负责人：</template>
       </el-input>
       <el-input
         class="mt15"
         placeholder="请输入负责人电话"
-        v-model="activity.name">
+        v-model="activity.chargeTelphone">
         <template slot="prepend">电话：</template>
       </el-input>
       <el-input
@@ -44,7 +50,7 @@
         placeholder="请输入活动简介(必填)..."
         v-model="activity.description">
       </el-input>
-      <el-button class="mt20" type="primary">新建活动</el-button>
+      <el-button class="mt20" type="primary" @click="createActivity">新建活动</el-button>
     </div>
   </div>
 </template>
@@ -57,8 +63,38 @@ export default {
     return {
       activity: {
         name: '',
+        time: '',
+        address: '',
+        chargeName: '',
+        chargeTelphone: '',
+        corporation: '',
         description: ''
       }
+    }
+  },
+  methods: {
+    createActivity () {
+      this.$store.dispatch('activity-create', {
+        data: {
+          name: this.activity.name,
+          time: this.activity.time,
+          address: this.activity.address,
+          chargeName: this.activity.chargeName,
+          chargeTelphone: this.activity.chargeTelphone,
+          corporation: this.activity.corporation,
+          description: this.activity.description
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.$message({
+            message: '提交成功',
+            type: 'success'
+          })
+          this.$router.push({
+            name: 'activity-list'
+          })
+        }
+      })
     }
   }
 }

@@ -26,9 +26,7 @@ export default {
   name: getComponentName('corporation-list'),
   data () {
     return {
-      corporationList: [{
-        name: '街舞社团'
-      }]
+      corporationList: []
     }
   },
   methods: {
@@ -36,19 +34,36 @@ export default {
     },
     jumpDetail (row) {
       this.$router.push({
-        name: 'corporation-detail'
+        name: 'corporation-detail',
+        params: {
+          corporationId: row.id
+        }
       })
     },
     createdCorporation () {
       this.$router.push({
         name: 'corporation-create'
       })
+    },
+    getCorporationList () {
+      this.$store.dispatch('corporation-corporationList', {
+        params: {
+          pageSize: 1000,
+          pageNum: 1
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          response.data.value.list.forEach(item => {
+            this.corporationList.push({
+              name: item.name
+            })
+          })
+        }
+      })
     }
   },
   created () {
-    for (let index = 0; index < 5; index++) {
-      this.corporationList = this.corporationList.concat(this.corporationList)
-    }
+    this.getCorporationList()
   }
 }
 </script>

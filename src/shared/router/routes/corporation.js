@@ -7,9 +7,12 @@ const corporationRoutes = [{
   name: 'corporation-list',
   component: corporationListComponent
 }, {
-  path: '/corporation-detail',
+  path: '/corporation-detail/:corporationId',
   name: 'corporation-detail',
-  component: corporationDetailComponent
+  component: corporationDetailComponent,
+  props: (route) => ({
+    corporationId: parseInt(route.params.corporationId)
+  })
 }, {
   path: '/corporation-create',
   name: 'corporation-create',

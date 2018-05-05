@@ -8,6 +8,7 @@ const requestsDefine = {}
 const requestsConfig = _config['requests']
 
 let accessToken = window.localStorage.getItem('accessToken')
+console.log('tk ' + accessToken)
 
 /**
  * 混合全局请求配置对象
@@ -15,6 +16,7 @@ let accessToken = window.localStorage.getItem('accessToken')
  * @param {Object} config httpServes 的配置对象
  */
 function modifyRequestConfig (context, config) {
+  console.log('ok')
   if (config === undefined || config === null) config = {}
   // 往 headers 中混合 accessToken
   config.headers = Object.assign({

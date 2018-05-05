@@ -80,15 +80,15 @@ export default {
       isEdit: true,
       status: '编辑',
       studentInfo: {
-        name: '阿福',
-        number: '14420121',
-        password: '123456',
-        grade: '14级',
-        class: '网工一班',
-        sex: '男',
-        age: '18',
-        email: '26@qq.com',
-        telphone: 17682785889
+        name: '',
+        number: '',
+        password: '',
+        grade: '',
+        class: '',
+        sex: '',
+        age: '',
+        email: '',
+        telphone: ''
       }
     }
   },
@@ -96,7 +96,51 @@ export default {
     toggleStatus () {
       this.isEdit = !this.isEdit
       this.status = this.isEdit ? '编辑' : '保存'
+      if (this.isEdit) {
+        this.updatedStudentInfo()
+      }
+    },
+    getUserInfo () {
+      let studentInfo = this.$storage.get('userInfo')
+      this.studentInfo = {
+        id: studentInfo.id,
+        name: studentInfo.name,
+        number: studentInfo.number,
+        password: studentInfo.password,
+        grade: studentInfo.grade,
+        class: studentInfo.class,
+        sex: studentInfo.sex,
+        age: studentInfo.age,
+        email: studentInfo.email,
+        telphone: studentInfo.telphone
+      }
+    },
+    updatedStudentInfo () {
+      this.$store.dispatch('updatedUser', {
+        data: {
+          id: this.studentInfo.id,
+          name: this.studentInfo.name,
+          number: this.studentInfo.number,
+          password: this.studentInfo.password,
+          grade: this.studentInfo.grade,
+          class: this.studentInfo.class,
+          sex: this.studentInfo.sex,
+          age: this.studentInfo.age,
+          email: this.studentInfo.email,
+          telphone: this.studentInfo.telphone
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.$message({
+            message: '保存成功',
+            type: 'success'
+          })
+        }
+      })
     }
+  },
+  created () {
+    this.getUserInfo()
   }
 }
 </script>

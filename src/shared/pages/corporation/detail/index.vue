@@ -16,6 +16,11 @@
 import getComponentName from 'shared@/config/components-define'
 export default {
   name: getComponentName('corporation-detail'),
+  props: {
+    corporationId: {
+      type: Number
+    }
+  },
   data () {
     return {
       activeNames: ['1'],
@@ -29,9 +34,12 @@ export default {
       this.$router.push({
         name: 'corporation-detail'
       })
+    },
+    getCorporationDetail (id) {
     }
   },
   created () {
+    this.getCorporationDetail(this.corporationId)
   }
 }
 </script>

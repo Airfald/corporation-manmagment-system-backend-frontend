@@ -9,8 +9,7 @@
       </el-alert>
       <el-input
         placeholder="请输入社团名称(必填)"
-        v-model="corporation.name"
-        :disabled="isEdit">
+        v-model="corporation.name">
         <template slot="prepend">社团名称：</template>
       </el-input>
       <el-input
@@ -19,7 +18,7 @@
         placeholder="请输入社团简介(必填)..."
         v-model="corporation.description">
       </el-input>
-      <el-button class="mt20" type="primary">新建社团</el-button>
+      <el-button class="mt20" type="primary" @click="createCorporation">新建社团</el-button>
     </div>
   </div>
 </template>
@@ -34,6 +33,26 @@ export default {
         name: '',
         description: ''
       }
+    }
+  },
+  methods: {
+    createCorporation () {
+      this.$store.dispatch('corporation-create', {
+        data: {
+          name: this.corporation.name,
+          description: this.corporation.description
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.$message({
+            message: '提交成功',
+            type: 'success'
+          })
+          this.$router.push({
+            name: 'corporation-list'
+          })
+        }
+      })
     }
   }
 }

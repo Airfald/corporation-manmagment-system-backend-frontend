@@ -33,6 +33,62 @@ config.requests = [
       url: serverHost + '/login',
       method: 'post'
     }
+  },
+  {
+    name: 'activity-view',
+    config: {
+      url: serverHost + '/activity/view',
+      method: 'get'
+    }
+  },
+  {
+    name: 'corporation-create',
+    config: {
+      url: serverHost + '/corporation/create',
+      method: 'post'
+    }
+  },
+  {
+    name: 'corporation-corporationList',
+    config: {
+      url: serverHost + '/corporation/corporationList',
+      method: 'get'
+    }
+  },
+  {
+    name: 'activity-activityList',
+    config: {
+      url: serverHost + '/activity/activityList',
+      method: 'get'
+    }
+  },
+  {
+    name: 'activity-create',
+    config: {
+      url: serverHost + '/activity/create',
+      method: 'post'
+    }
+  },
+  {
+    name: 'leaveMessage-create',
+    config: {
+      url: serverHost + '/activity/create',
+      method: 'post'
+    }
+  },
+  {
+    name: 'updatedUser',
+    config: {
+      url: serverHost + '/updatedUser',
+      method: 'post'
+    }
+  },
+  {
+    name: 'viewUser',
+    config: {
+      url: serverHost + '/viewUser',
+      method: 'get'
+    }
   }
 ]
 

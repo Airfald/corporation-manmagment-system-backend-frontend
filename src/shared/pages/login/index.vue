@@ -57,6 +57,8 @@ export default {
             password: this.studentInfo.password
           }
         }).then(response => {
+          this.$storage.set('accessToken', response.data.accessToken)
+          this.$storage.set('userInfo', response.data.value)
           if (response && response.data.errCode === 0) {
             this.$router.push({
               name: 'home'
