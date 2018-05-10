@@ -2,12 +2,12 @@
   <el-container id="app">
     <!-- 子元素中有 el-header 或 el-footer 时为 vertical，否则为 horizontal -->
     <!-- 头部 -->
-    <el-header height="50px">
+    <el-header height="50px" v-if="!isLogin">
       <app-header id="app-header"></app-header>
     </el-header>
     <el-container>
       <!-- 侧边栏 -->
-      <el-aside>
+      <el-aside v-if="!isLogin">
         <app-sidebar id="app-sidebar"></app-sidebar>
       </el-aside>
       <!-- 内容部分 -->
@@ -37,7 +37,34 @@ export default {
     AppBreadcrumb,
     AppFooter
   },
+  data () {
+    return {
+      isLogin: false
+    }
+  },
+  watch: {
+    $route () {
+      this.isLogin = this.$route.name === 'login'
+    }
+  },
   methods: {
+  },
+  mounted () {
+    this.$router.beforeEach((to, from, next) => {
+      if (to.name === 'login') {
+        next()
+      } else {
+        if (this.$storage.get('accessToken')) {
+          console.log(this.$storage.get('accessToken'))
+          next()
+        } else {
+          console.log(this.$storage.get('accessToken'), 2)
+          next('/login')
+        }
+      }
+    })
+  },
+  created () {
   }
 }
 </script>

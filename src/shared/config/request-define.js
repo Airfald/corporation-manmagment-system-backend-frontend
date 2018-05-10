@@ -89,6 +89,27 @@ config.requests = [
       url: serverHost + '/viewUser',
       method: 'get'
     }
+  },
+  {
+    name: 'getUserList',
+    config: {
+      url: serverHost + '/getUserList',
+      method: 'get'
+    }
+  },
+  {
+    name: 'createUser',
+    config: {
+      url: serverHost + '/createUser',
+      method: 'post'
+    }
+  },
+  {
+    name: 'deleteUser',
+    config: {
+      url: serverHost + '/deleteUser',
+      method: 'get'
+    }
   }
 ]
 

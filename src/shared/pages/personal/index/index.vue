@@ -137,10 +137,38 @@ export default {
           })
         }
       })
+    },
+    getViewUser () {
+      this.$store.dispatch('viewUser', {
+        params: {
+          id: this.$route.params.studentId
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          let studentInfo = response.data.value
+          this.studentInfo = {
+            id: studentInfo.id,
+            name: studentInfo.name,
+            number: studentInfo.number,
+            password: studentInfo.password,
+            grade: studentInfo.grade,
+            class: studentInfo.class,
+            sex: studentInfo.sex,
+            age: studentInfo.age,
+            email: studentInfo.email,
+            telphone: studentInfo.telphone
+          }
+        }
+      })
     }
   },
   created () {
-    this.getUserInfo()
+    console.log(this.$route.params)
+    if (this.$route.params.studentId) {
+      this.getViewUser()
+    } else {
+      this.getUserInfo()
+    }
   }
 }
 </script>

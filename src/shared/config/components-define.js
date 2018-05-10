@@ -3,7 +3,7 @@
  * @Author: 欧贺福
  * @Date: 2018-04-10 17:24:46
  * @Last Modified by: 欧贺福
- * @Last Modified time: 2018-05-04 20:01:47
+ * @Last Modified time: 2018-05-05 21:06:57
  */
 
 const COMPONENTS_DEFINE = {}
@@ -34,6 +34,9 @@ COMPONENTS_DEFINE['activity-rank'] = 'activity-rank'
 COMPONENTS_DEFINE['corporation-number'] = 'corporation-number'
 COMPONENTS_DEFINE['statistics-analysis'] = 'statistics-analysis'
 COMPONENTS_DEFINE['student-detail'] = 'student-detail'
+COMPONENTS_DEFINE['corporation-statistics'] = 'corporation-statistics'
+COMPONENTS_DEFINE['student-list'] = 'student-list'
+COMPONENTS_DEFINE['student-create'] = 'student-create'
 
 function getComponentName (key) {
   if (key in COMPONENTS_DEFINE) {

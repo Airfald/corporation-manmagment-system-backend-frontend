@@ -3,7 +3,7 @@
  * @Author: 欧贺福
  * @Date: 2018-04-10 16:56:23
  * @Last Modified by: 欧贺福
- * @Last Modified time: 2018-05-01 14:44:48
+ * @Last Modified time: 2018-05-05 21:59:40
  */
 
 const $storage = {
@@ -11,11 +11,7 @@ const $storage = {
     window.localStorage.setItem(key, JSON.stringify(value))
   },
   get (key) {
-    if (window.localStorage.getItem(key)) {
-      return JSON.parse(window.localStorage.getItem(key))
-    } else {
-      console.log('操作的值不存在')
-    }
+    return JSON.parse(window.localStorage.getItem(key))
   },
   remove (key) {
     if (window.localStorage.getItem(key)) {

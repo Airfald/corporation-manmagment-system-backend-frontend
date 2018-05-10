@@ -6,7 +6,7 @@
       <el-table
         class="mt10"
         stripe
-        :data="activityList"
+        :data="studentList"
         style="width: 100%">
         <el-table-column
           align="center"
@@ -57,7 +57,7 @@
         </el-table-column>
       </el-table>
       <!-- 分页组件 -->
-      <el-pagination
+      <!-- <el-pagination
         class="mt25"
         slot="right"
         layout="total, prev, pager, next, jumper"
@@ -65,7 +65,7 @@
         :total="pageTotal"
         :current-page.sync="currentPage"
         @current-change="changePageIndex">
-      </el-pagination>
+      </el-pagination> -->
     </div>
   </div>
 </template>
@@ -78,14 +78,7 @@ export default {
     return {
       pageTotal: 32,
       currentPage: 1,
-      activityList: [{
-        name: '街舞社团',
-        number: 144201221,
-        grade: '14级',
-        class: '网工一班',
-        email: '26@qq.com',
-        telphone: '13177878787'
-      }]
+      studentList: []
     }
   },
   methods: {
@@ -93,21 +86,58 @@ export default {
     },
     jumpDetail (row) {
       this.$router.push({
-        name: 'student-detail'
+        name: 'personal',
+        params: {
+          studentId: row.id
+        }
       })
     },
-    deleteStudent () {
+    deleteStudent (row) {
+      this.$store.dispatch('deleteUser', {
+        params: {
+          id: row.id
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+          this.getStudentList()
+        }
+      })
     },
     createStudent () {
       this.$router.push({
-        name: 'student-detail'
+        name: 'student-create'
+      })
+    },
+    getStudentList () {
+      this.$store.dispatch('getUserList', {
+        params: {
+          pageSize: 10000,
+          pageNum: 1
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.studentList = []
+          response.data.value.list.forEach(item => {
+            this.studentList.push({
+              id: item.id,
+              name: item.name,
+              number: item.number,
+              grade: item.grade,
+              class: item.class,
+              email: item.email,
+              telphone: item.telphone
+            })
+          })
+        }
       })
     }
   },
   created () {
-    for (let index = 0; index < 5; index++) {
-      this.activityList = this.activityList.concat(this.activityList)
-    }
+    this.getStudentList()
   }
 }
 </script>

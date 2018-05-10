@@ -13,7 +13,7 @@
       class="header-user-area">
       <div>
         <img>
-        <span class="user-name">paulo</span>
+        <span class="user-name">{{ userName }}</span>
         <i class="el-icon-arrow-down el-icon--right"></i>
       </div>
       <el-dropdown-menu slot="dropdown">
@@ -28,9 +28,19 @@ export default {
   name: 'app-sidebar',
   data () {
     return {
+      userName: ''
     }
   },
   methods: {
+    userLogout () {
+      this.$storage.set('accessToken', null)
+      this.$router.push({
+        name: 'login'
+      })
+    }
+  },
+  created () {
+    this.userName = this.$storage.get('userInfo').name
   }
 }
 </script>

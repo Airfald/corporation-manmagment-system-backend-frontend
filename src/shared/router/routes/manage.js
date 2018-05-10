@@ -11,8 +11,8 @@ const statisticsRoutes = [{
   name: 'student-list',
   component: studentListComponent
 }, {
-  path: '/student-detail',
-  name: 'student-detail',
+  path: '/student-create',
+  name: 'student-create',
   component: studentCreateComponent
 }]
 
