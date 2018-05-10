@@ -72,6 +72,12 @@ export default {
         route: {
           name: 'student-list'
         }
+      }, {
+        name: '留言列表',
+        key: 'manage-leave-message-list',
+        route: {
+          name: 'manage-leave-message-list'
+        }
       }]
     }
   },

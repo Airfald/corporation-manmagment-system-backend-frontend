@@ -9,12 +9,13 @@
         class="corporation-list__item"
         v-for="(item, index) in corporationList"
         :key="index"
-        @click="jumpDetail">
+        @click="jumpDetail(item.id)">
         <div><img width="100%" height="100%" src="../../../assets/images/corporation.jpg"></div>
         <div class="corporation-txt">
           <h4 class="corporation-list__item-name">{{ item.name }}</h4>
           <p>欢迎加入我们协会</p>
         </div>
+        <span class="delete-corporation" @click.stop="deleteCorporation(item.id)">x</span>
       </div>
     </div>
   </div>
@@ -32,17 +33,32 @@ export default {
   methods: {
     changePageIndex () {
     },
-    jumpDetail (row) {
+    jumpDetail (id) {
       this.$router.push({
         name: 'corporation-detail',
         params: {
-          corporationId: row.id
+          corporationId: id
         }
       })
     },
     createdCorporation () {
       this.$router.push({
         name: 'corporation-create'
+      })
+    },
+    deleteCorporation (id) {
+      this.$store.dispatch('corporation-deleteCorporation', {
+        params: {
+          id: id
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+          this.getCorporationList()
+        }
       })
     },
     getCorporationList () {
@@ -53,8 +69,10 @@ export default {
         }
       }).then(response => {
         if (response.data && response.data.errCode === 0) {
+          this.corporationList = []
           response.data.value.list.forEach(item => {
             this.corporationList.push({
+              id: item.id,
               name: item.name
             })
           })
@@ -80,6 +98,7 @@ export default {
 }
 
 .corporation-list__item {
+  position: relative;
   float: left;
   width: 25%;
   padding-top: 15px;
@@ -91,6 +110,16 @@ export default {
   vertical-align: middle;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  }
+
+  .delete-corporation {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    font-size: 25px;
+    font-weight: bold;
   }
 }
 

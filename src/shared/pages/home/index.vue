@@ -23,7 +23,7 @@
     </el-carousel>
     <!-- 最近活动和公告 -->
     <div class="latest clear">
-      <div class="latest__activity fl">
+      <div class="latest__activity">
         <div class="latest__activity-header clear">
           <span class="fl">近期活动</span>
           <a class="fr" @click="jumpActivityList">查看全部>></a>
@@ -33,68 +33,29 @@
           border
           style="width: 100%">
           <el-table-column
+            type="index"
+            width="50">
+          </el-table-column>
+          <el-table-column
             prop="name"
-            label="活动名称"
-            width="150">
+            label="活动名称">
           </el-table-column>
           <el-table-column
             prop="time"
-            label="时间"
-            width="100">
+            label="时间">
           </el-table-column>
           <el-table-column
             prop="address"
-            label="地点"
-            width="100">
+            label="地点">
           </el-table-column>
           <el-table-column
             prop="corporation"
-            label="举办社团"
-            width="100">
+            label="举办社团">
           </el-table-column>
           <el-table-column
             fixed="right"
             label="操作"
-            width="100">
-            <template slot-scope="scope">
-              <el-button @click="jumpDetail(scope.row)" type="text" size="small">查看详情</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-      <div class="latest__announcement fr">
-        <div class="latest__announcement-header clear">
-          <span class="fl">公告</span>
-          <a class="fr" @click="jumpActivityList">查看全部>></a>
-        </div>
-        <el-table
-          :data="latestActivityData"
-          border
-          style="width: 100%">
-          <el-table-column
-            prop="name"
-            label="名称"
             width="150">
-          </el-table-column>
-          <el-table-column
-            prop="time"
-            label="时间"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="地点"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="corporation"
-            label="举办社团"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            fixed="right"
-            label="操作"
-            width="100">
             <template slot-scope="scope">
               <el-button @click="jumpDetail(scope.row)" type="text" size="small">查看详情</el-button>
             </template>
@@ -237,8 +198,10 @@ export default {
 }
 
 .latest {
+  margin-left: 100px;
+  margin-right: 100px;
   .latest__activity {
-    width: 48%;
+    // width: 48%;
     .latest__activity-header {
       padding: 10px;
       border-top-left-radius: 5px;

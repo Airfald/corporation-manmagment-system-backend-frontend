@@ -72,7 +72,7 @@ config.requests = [
   {
     name: 'leaveMessage-create',
     config: {
-      url: serverHost + '/activity/create',
+      url: serverHost + '/leaveMessage/create',
       method: 'post'
     }
   },
@@ -108,6 +108,34 @@ config.requests = [
     name: 'deleteUser',
     config: {
       url: serverHost + '/deleteUser',
+      method: 'get'
+    }
+  },
+  {
+    name: 'corporation-view',
+    config: {
+      url: serverHost + '/corporation/view',
+      method: 'get'
+    }
+  },
+  {
+    name: 'activity-deleteActivity',
+    config: {
+      url: serverHost + '/activity/deleteActivity',
+      method: 'get'
+    }
+  },
+  {
+    name: 'corporation-deleteCorporation',
+    config: {
+      url: serverHost + '/corporation/deleteCorporation',
+      method: 'get'
+    }
+  },
+  {
+    name: 'leaveMessage-leaveMessageList',
+    config: {
+      url: serverHost + '/leaveMessage/leaveMessageList',
       method: 'get'
     }
   }

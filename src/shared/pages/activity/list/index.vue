@@ -45,6 +45,7 @@
           width="100">
           <template slot-scope="scope">
             <el-button @click="jumpDetail(scope.row)" type="text" size="small">查看活动详情</el-button>
+            <el-button @click="deleteActivity(scope.row)" type="text" size="small">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -83,6 +84,21 @@ export default {
         }
       })
     },
+    deleteActivity (row) {
+      this.$store.dispatch('activity-deleteActivity', {
+        params: {
+          id: row.id
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.getActivityList()
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+        }
+      })
+    },
     createActivity () {
       this.$router.push({
         name: 'activity-create'
@@ -96,6 +112,7 @@ export default {
         }
       }).then(response => {
         if (response.data && response.data.errCode === 0) {
+          this.activityList = []
           response.data.value.list.forEach(item => {
             this.activityList.push({
               id: item.id,

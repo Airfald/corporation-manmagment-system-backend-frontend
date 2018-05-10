@@ -17,9 +17,9 @@
       </el-main>
     </el-container>
     <!-- 底部部分 -->
-    <el-footer v-if="false">
+    <!-- <el-footer v-if="false">
       <app-footer></app-footer>
-    </el-footer>
+    </el-footer> -->
   </el-container>
 </template>
 
