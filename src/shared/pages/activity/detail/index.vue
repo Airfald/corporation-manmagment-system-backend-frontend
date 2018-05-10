@@ -9,6 +9,7 @@
         <div><span class="title">【负责人电话】：</span>{{ activity.chargeTelphone }}</div>
         <div><span class="title">【活动简介】：</span>{{ activity.description }}</div>
     </div>
+    <el-button type="primary" @click="joinActivity">参加活动-></el-button>
   </div>
 </template>
 
@@ -23,6 +24,7 @@ export default {
   },
   data () {
     return {
+      studentId: '',
       activity: {
         name: '街舞社团招新了！',
         address: '致远楼',
@@ -52,10 +54,31 @@ export default {
           }
         }
       })
+    },
+    joinActivity () {
+      this.$store.dispatch('activity-joinActivity', {
+        data: {
+          studentId: this.studentId,
+          activityId: this.activityId
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.$message({
+            message: '报名成功',
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: response.data.errMsg,
+            type: 'error'
+          })
+        }
+      })
     }
   },
   created () {
     this.getActivityDetail(this.activityId)
+    this.studentId = this.$storage.get('userInfo').id
   }
 }
 </script>

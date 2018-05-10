@@ -138,6 +138,34 @@ config.requests = [
       url: serverHost + '/leaveMessage/leaveMessageList',
       method: 'get'
     }
+  },
+  {
+    name: 'corporation-join',
+    config: {
+      url: serverHost + '/corporation/join',
+      method: 'post'
+    }
+  },
+  {
+    name: 'activity-joinActivity',
+    config: {
+      url: serverHost + '/activity/joinActivity',
+      method: 'post'
+    }
+  },
+  {
+    name: 'studentCorporationRel-getCorporationStudentList',
+    config: {
+      url: serverHost + '/studentCorporationRel/getCorporationStudentList',
+      method: 'get'
+    }
+  },
+  {
+    name: 'studentActivityRel-getActivityStudentList',
+    config: {
+      url: serverHost + '/studentActivityRel/getActivityStudentList',
+      method: 'get'
+    }
   }
 ]
 

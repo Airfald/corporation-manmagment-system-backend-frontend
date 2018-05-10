@@ -4,6 +4,9 @@ const homeRoutes = [{
   path: '/home',
   name: 'home',
   component: homeComponent
+}, {
+  path: '/',
+  redirect: '/home'
 }]
 
 export default homeRoutes

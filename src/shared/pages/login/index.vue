@@ -22,9 +22,9 @@
         </el-alert>
         <div class="mt15">
           <el-button type="primary" @click.native="studentLogin">登陆</el-button>
-          <div class="fr">
+          <!-- <div class="fr">
             <el-button type="text">忘记密码？</el-button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

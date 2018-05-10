@@ -78,6 +78,18 @@ export default {
         route: {
           name: 'manage-leave-message-list'
         }
+      }, {
+        name: '活动学生列表',
+        key: 'manage-activity',
+        route: {
+          name: 'manage-activity'
+        }
+      }, {
+        name: '社团学生列表',
+        key: 'manage-corporation',
+        route: {
+          name: 'manage-corporation'
+        }
       }]
     }
   },
