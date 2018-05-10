@@ -3,7 +3,7 @@
     <div class="corporation-list__header">社团列表</div>
     <div class="corporation-list__content clear">
     <div class="mt15">
-      <el-button type="primary" size="small" @click="createdCorporation">新建社团</el-button>
+      <el-button v-if="isAdmin" type="primary" size="small" @click="createdCorporation">新建社团</el-button>
     </div>
       <div
         class="corporation-list__item"
@@ -15,7 +15,7 @@
           <h4 class="corporation-list__item-name">{{ item.name }}</h4>
           <p>欢迎加入我们协会</p>
         </div>
-        <span class="delete-corporation" @click.stop="deleteCorporation(item.id)">x</span>
+        <span v-if="isAdmin" class="delete-corporation" @click.stop="deleteCorporation(item.id)">x</span>
       </div>
     </div>
   </div>
@@ -27,7 +27,8 @@ export default {
   name: getComponentName('corporation-list'),
   data () {
     return {
-      corporationList: []
+      corporationList: [],
+      isAdmin: false
     }
   },
   methods: {
@@ -82,6 +83,7 @@ export default {
   },
   created () {
     this.getCorporationList()
+    this.isAdmin = this.$storage.get('userInfo').isAdmin
   }
 }
 </script>

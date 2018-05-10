@@ -13,7 +13,7 @@
       <span slot="title"><i :class="'sidebar-menu-icon ' + item.key"></i>{{ item.name }}</span>
     </el-menu-item>
     <!-- 后台管理界面 -->
-    <el-submenu index="management">
+    <el-submenu index="management" v-if="isAdmin">
       <template slot="title"><i class="sidebar-menu-icon management"></i>后台管理</template>
       <el-menu-item
         v-for="(item, index) in managmentList"
@@ -29,6 +29,7 @@ export default {
   name: 'app-sidebar',
   data () {
     return {
+      isAdmin: false,
       menuList: [{
         name: '首页',
         key: 'home',
@@ -61,12 +62,13 @@ export default {
         }
       }],
       managmentList: [{
-        name: '数据统计与分析',
-        key: 'statistics-analysis',
-        route: {
-          name: 'statistics-analysis'
-        }
-      }, {
+      //   {
+      //   name: '数据统计与分析',
+      //   key: 'statistics-analysis',
+      //   route: {
+      //     name: 'statistics-analysis'
+      //   }
+      // }, {
         name: '学生管理',
         key: 'student-list',
         route: {
@@ -100,6 +102,9 @@ export default {
         name: route.name
       })
     }
+  },
+  created () {
+    this.isAdmin = this.$storage.get('userInfo').isAdmin
   }
 }
 </script>

@@ -2,6 +2,7 @@
   <div class="activity-list">
     <div class="activity-list__header">活动列表</div>
       <el-button
+        v-if="isAdmin"
         class="mt15"
         type="primary"
         size="small"
@@ -45,7 +46,7 @@
           width="100">
           <template slot-scope="scope">
             <el-button @click="jumpDetail(scope.row)" type="text" size="small">查看活动详情</el-button>
-            <el-button @click="deleteActivity(scope.row)" type="text" size="small">删除</el-button>
+            <el-button v-if="isAdmin" @click="deleteActivity(scope.row)" type="text" size="small">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -70,7 +71,8 @@ export default {
     return {
       activityList: [],
       pageTotal: 32,
-      currentPage: 1
+      currentPage: 1,
+      isAdmin: false
     }
   },
   methods: {
@@ -130,6 +132,7 @@ export default {
   },
   created () {
     this.getActivityList()
+    this.isAdmin = this.$storage.get('userInfo').isAdmin
   }
 }
 </script>
