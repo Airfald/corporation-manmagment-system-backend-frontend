@@ -167,7 +167,9 @@ export default {
     }
   },
   created () {
-    this.getActivityList()
+    setTimeout(() => {
+      this.getActivityList()
+    }, 1000)
   }
 }
 </script>

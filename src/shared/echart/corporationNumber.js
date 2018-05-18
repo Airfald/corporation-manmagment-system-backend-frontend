@@ -1,5 +1,5 @@
 const corporationNumber = {
-  color: ['#fcb23c', '#3da5fe'],
+  color: ['#3da5fe'],
   tooltip: {
     trigger: 'axis',
     axisPointer: {
@@ -106,15 +106,9 @@ const corporationNumber = {
   series: [
     {
       name: '社团人数',
-      type: 'line',
-      yAxisIndex: 1,
-      data: ['50', '37', '74', '47', '12', '85', '256']
-    },
-    {
-      name: '社团活动',
       type: 'bar',
-      barWidth: '40%',
-      data: ['200', '167', '234', '267', '135', '252', '258']
+      yAxisIndex: 1,
+      data: ['5', '3', '7', '4', '1', '5', '256']
     }
   ]
 }

@@ -66,6 +66,11 @@
           <el-option label="男" value="1"></el-option>
           <el-option label="女" value="2"></el-option>
         </el-select>
+        <!-- 设为管理员：
+        <el-select v-if="isAdmin === '是' || studentInfo.id !== studentId" v-model="studentInfo.isAdmin" placeholder="请选择" :disabled="isEdit">
+          <el-option label="是" value="1"></el-option>
+          <el-option label="否" value="0"></el-option>
+        </el-select> -->
       </div>
     </div>
   </div>
@@ -79,6 +84,8 @@ export default {
     return {
       isEdit: true,
       status: '编辑',
+      isAdmin: '',
+      studentId: '',
       studentInfo: {
         name: '',
         number: '',
@@ -112,7 +119,8 @@ export default {
         sex: studentInfo.sex,
         age: studentInfo.age,
         email: studentInfo.email,
-        telphone: studentInfo.telphone
+        telphone: studentInfo.telphone,
+        isAdmin: studentInfo.isAdmin ? '是' : '否'
       }
     },
     updatedStudentInfo () {
@@ -127,7 +135,8 @@ export default {
           sex: this.studentInfo.sex,
           age: this.studentInfo.age,
           email: this.studentInfo.email,
-          telphone: this.studentInfo.telphone
+          telphone: this.studentInfo.telphone,
+          isAdmin: this.studentInfo.isAdmin === '是'
         }
       }).then(response => {
         if (response.data && response.data.errCode === 0) {
@@ -156,7 +165,8 @@ export default {
             sex: studentInfo.sex,
             age: studentInfo.age,
             email: studentInfo.email,
-            telphone: studentInfo.telphone
+            telphone: studentInfo.telphone,
+            isAdmin: studentInfo.isAdmin === '是'
           }
         }
       })
@@ -164,6 +174,8 @@ export default {
   },
   created () {
     console.log(this.$route.params)
+    this.isAdmin = this.$storage.get('userInfo').isAdmin ? '是' : '否'
+    this.studentId = this.$storage.get('userInfo').id
     if (this.$route.params.studentId) {
       this.getViewUser()
     } else {

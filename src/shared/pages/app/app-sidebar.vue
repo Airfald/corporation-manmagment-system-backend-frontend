@@ -62,13 +62,13 @@ export default {
         }
       }],
       managmentList: [{
-      //   {
-      //   name: '数据统计与分析',
-      //   key: 'statistics-analysis',
-      //   route: {
-      //     name: 'statistics-analysis'
-      //   }
-      // }, {
+        // {
+        name: '数据统计与分析',
+        key: 'statistics-analysis',
+        route: {
+          name: 'statistics-analysis'
+        }
+      }, {
         name: '学生管理',
         key: 'student-list',
         route: {

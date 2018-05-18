@@ -37,22 +37,29 @@ export default {
   },
   methods: {
     createCorporation () {
-      this.$store.dispatch('corporation-create', {
-        data: {
-          name: this.corporation.name,
-          description: this.corporation.description
-        }
-      }).then(response => {
-        if (response.data && response.data.errCode === 0) {
-          this.$message({
-            message: '提交成功',
-            type: 'success'
-          })
-          this.$router.push({
-            name: 'corporation-list'
-          })
-        }
-      })
+      if (this.corporation.name.trim() === '' || this.corporation.description.trim() === '') {
+        this.$message({
+          message: '必填项不能为空',
+          type: 'error'
+        })
+      } else {
+        this.$store.dispatch('corporation-create', {
+          data: {
+            name: this.corporation.name,
+            description: this.corporation.description
+          }
+        }).then(response => {
+          if (response.data && response.data.errCode === 0) {
+            this.$message({
+              message: '提交成功',
+              type: 'success'
+            })
+            this.$router.push({
+              name: 'corporation-list'
+            })
+          }
+        })
+      }
     }
   }
 }

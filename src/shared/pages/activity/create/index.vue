@@ -74,27 +74,35 @@ export default {
   },
   methods: {
     createActivity () {
-      this.$store.dispatch('activity-create', {
-        data: {
-          name: this.activity.name,
-          time: this.activity.time,
-          address: this.activity.address,
-          chargeName: this.activity.chargeName,
-          chargeTelphone: this.activity.chargeTelphone,
-          corporation: this.activity.corporation,
-          description: this.activity.description
-        }
-      }).then(response => {
-        if (response.data && response.data.errCode === 0) {
-          this.$message({
-            message: '提交成功',
-            type: 'success'
-          })
-          this.$router.push({
-            name: 'activity-list'
-          })
-        }
-      })
+      if (this.activity.name.trim() === '' || this.activity.time.trim() === '' || this.activity.address.trim() === '' ||
+      this.activity.description.trim() === '' || this.activity.corporation.trim() === '' || this.activity.chargeName.trim() === '' || this.activity.chargeTelphone.trim() === '') {
+        this.$message({
+          message: '必填项不能为空',
+          type: 'error'
+        })
+      } else {
+        this.$store.dispatch('activity-create', {
+          data: {
+            name: this.activity.name,
+            time: this.activity.time,
+            address: this.activity.address,
+            chargeName: this.activity.chargeName,
+            chargeTelphone: this.activity.chargeTelphone,
+            corporation: this.activity.corporation,
+            description: this.activity.description
+          }
+        }).then(response => {
+          if (response.data && response.data.errCode === 0) {
+            this.$message({
+              message: '提交成功',
+              type: 'success'
+            })
+            this.$router.push({
+              name: 'activity-list'
+            })
+          }
+        })
+      }
     }
   }
 }

@@ -13,7 +13,7 @@
       class="header-user-area">
       <div>
         <img>
-        <span class="user-name">{{ userName }}</span>
+        <span class="user-name">{{ userName }}{{ isAdmin ? '(管理员)' : '' }}</span>
         <i class="el-icon-arrow-down el-icon--right"></i>
       </div>
       <el-dropdown-menu slot="dropdown">
@@ -28,7 +28,8 @@ export default {
   name: 'app-sidebar',
   data () {
     return {
-      userName: ''
+      userName: '',
+      isAdmin: false
     }
   },
   methods: {
@@ -41,6 +42,7 @@ export default {
   },
   created () {
     this.userName = this.$storage.get('userInfo').name
+    this.isAdmin = this.$storage.get('userInfo').isAdmin
   }
 }
 </script>
