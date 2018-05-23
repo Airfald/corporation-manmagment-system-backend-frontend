@@ -124,28 +124,40 @@ export default {
       }
     },
     updatedStudentInfo () {
-      this.$store.dispatch('updatedUser', {
-        data: {
-          id: this.studentInfo.id,
-          name: this.studentInfo.name,
-          number: this.studentInfo.number,
-          password: this.studentInfo.password,
-          grade: this.studentInfo.grade,
-          class: this.studentInfo.class,
-          sex: this.studentInfo.sex,
-          age: this.studentInfo.age,
-          email: this.studentInfo.email,
-          telphone: this.studentInfo.telphone,
-          isAdmin: this.studentInfo.isAdmin === '是'
-        }
-      }).then(response => {
-        if (response.data && response.data.errCode === 0) {
-          this.$message({
-            message: '保存成功',
-            type: 'success'
-          })
-        }
-      })
+      if (this.studentInfo.number === '') {
+        this.$message({
+          message: '必填项不能为空',
+          type: 'error'
+        })
+      } else {
+        this.$store.dispatch('updatedUser', {
+          data: {
+            id: this.studentInfo.id,
+            name: this.studentInfo.name,
+            number: this.studentInfo.number,
+            password: this.studentInfo.password,
+            grade: this.studentInfo.grade,
+            class: this.studentInfo.class,
+            sex: this.studentInfo.sex,
+            age: this.studentInfo.age,
+            email: this.studentInfo.email,
+            telphone: this.studentInfo.telphone,
+            isAdmin: this.studentInfo.isAdmin === '是'
+          }
+        }).then(response => {
+          if (response.data && response.data.errCode === 0) {
+            this.$message({
+              message: '保存成功',
+              type: 'success'
+            })
+          } else {
+            this.$message({
+              message: '保存失败',
+              type: 'error'
+            })
+          }
+        })
+      }
     },
     getViewUser () {
       this.$store.dispatch('viewUser', {

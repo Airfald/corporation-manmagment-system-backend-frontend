@@ -8,7 +8,8 @@
           </el-collapse-item>
         </el-collapse>
       </div>
-      <div class="mt15"><el-button type="primary" @click="joinCorportation">赶紧加入我们吧！</el-button></div>
+      <div class="mt15" v-if="examine"><el-button type="primary" @click="joinCorportation">赶紧加入我们吧！</el-button></div>
+      <div class="mt15" v-if="!examine"><el-button type="primary" @click="examineCorporation">审批通过</el-button></div>
   </div>
 </template>
 
@@ -26,7 +27,9 @@ export default {
       studentId: '',
       activeNames: ['1'],
       name: '',
-      description: ''
+      description: '',
+      isAdmin: 0,
+      examine: false
     }
   },
   methods: {
@@ -64,6 +67,19 @@ export default {
         if (response.data && response.data.errCode === 0) {
           this.name = response.data.value.name
           this.description = response.data.value.description
+          this.examine = response.data.value.examine
+        }
+      })
+    },
+    examineCorporation (id) {
+      this.$store.dispatch('corporation-update', {
+        data: {
+          id: this.corporationId,
+          examine: true
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.getCorporationDetail(this.corporationId)
         }
       })
     }
@@ -71,6 +87,7 @@ export default {
   created () {
     this.getCorporationDetail(this.corporationId)
     this.studentId = this.$storage.get('userInfo').id
+    this.isAdmin = this.$storage.get('userInfo').isAdmin
   }
 }
 </script>

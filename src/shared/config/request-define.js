@@ -166,6 +166,13 @@ config.requests = [
       url: serverHost + '/studentActivityRel/getActivityStudentList',
       method: 'get'
     }
+  },
+  {
+    name: 'corporation-update',
+    config: {
+      url: serverHost + '/corporation/update',
+      method: 'post'
+    }
   }
 ]
 

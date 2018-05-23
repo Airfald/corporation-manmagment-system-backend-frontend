@@ -6,10 +6,10 @@
       2. 饼图    统计社团 + 活动个数 + 社团的人数 + 社团留言<br>
       3. 漏斗图  举办的活动参加人数排名<br> -->
       <corportation-number></corportation-number>
-      <!-- <div class="mt20 clear"> -->
-      <activity-rank class="mt20 activity-rank-wrap"></activity-rank>
-        <!-- <corporation-statistics class="fr corporation-statistics-wrap"></corporation-statistics> -->
-      <!-- </div> -->
+      <div class="mt20 clear">
+        <activity-rank class="fl activity-rank-wrap"></activity-rank>
+        <corporation-statistics class="fr corporation-statistics-wrap"></corporation-statistics>
+      </div>
     </div>
   </div>
 </template>
@@ -42,9 +42,7 @@ export default {
 }
 
 .activity-rank-wrap {
-  width: 100%;
-  padding-left: 100px;
-  padding-right: 100px;
+  width: 49%;
 }
 
 .corporation-statistics-wrap {

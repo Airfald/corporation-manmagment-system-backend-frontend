@@ -15,7 +15,8 @@ const corporationStatistics = {
     }
   },
   legend: {
-    data: ['街舞社', '篮球社', '学生会', 'AS协会', '书法协会']
+    data: ['街舞社', '篮球社', '学生会', 'AS协会', '书法协会'],
+    show: false
   },
   calculable: true,
   series: [

@@ -13,7 +13,7 @@
       class="header-user-area">
       <div>
         <img>
-        <span class="user-name">{{ userName }}{{ isAdmin ? '(管理员)' : '' }}</span>
+        <span class="user-name">{{ userName }}</span>
         <i class="el-icon-arrow-down el-icon--right"></i>
       </div>
       <el-dropdown-menu slot="dropdown">
@@ -29,7 +29,7 @@ export default {
   data () {
     return {
       userName: '',
-      isAdmin: false
+      isAdmin: 0
     }
   },
   methods: {
@@ -43,6 +43,11 @@ export default {
   created () {
     this.userName = this.$storage.get('userInfo').name
     this.isAdmin = this.$storage.get('userInfo').isAdmin
+    if (this.isAdmin === 1) {
+      this.userName += '(管理员)'
+    } else if (this.isAdmin === 2) {
+      this.userName += '(超级管理员)'
+    }
   }
 }
 </script>

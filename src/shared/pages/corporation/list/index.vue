@@ -2,6 +2,18 @@
   <div class="corporation-list">
     <div class="corporation-list__header">社团列表</div>
     <div class="corporation-list__content clear">
+    <div class="like-corporation">
+      选择你最喜欢的社团：
+      <el-select v-model="value" placeholder="请选择">
+        <el-option
+          v-for="(item, index) in corporationList"
+          :key="index"
+          :label="item.name"
+          :value="item.id">
+        </el-option>
+      </el-select>
+      <el-button type="primary" size="small" @click="submit">提交</el-button>
+    </div>
     <div class="mt15">
       <el-button v-if="isAdmin" type="primary" size="small" @click="createdCorporation">新建社团</el-button>
     </div>
@@ -9,10 +21,11 @@
         class="corporation-list__item"
         v-for="(item, index) in corporationList"
         :key="index"
+        v-if="item.examine || (isAdmin === 2)"
         @click="jumpDetail(item.id)">
         <div><img width="100%" height="100%" src="../../../assets/images/corporation.jpg"></div>
         <div class="corporation-txt">
-          <h4 class="corporation-list__item-name">{{ item.name }}</h4>
+          <h4 class="corporation-list__item-name">{{ item.name }}<span v-if="!item.examine">未审批</span></h4>
           <p>欢迎加入我们协会</p>
         </div>
         <span v-if="isAdmin" class="delete-corporation" @click.stop="deleteCorporation(item.id)">x</span>
@@ -28,11 +41,29 @@ export default {
   data () {
     return {
       corporationList: [],
-      isAdmin: false
+      options: [],
+      value: '',
+      isAdmin: false,
+      studentId: '',
+      corporationId: ''
     }
   },
   methods: {
-    changePageIndex () {
+    submit () {
+      this.$store.dispatch('updatedUser', {
+        data: {
+          id: this.studentId,
+          corporationId: this.value
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.$message({
+            message: '提交成功',
+            type: 'success'
+          })
+          this.getViewUser()
+        }
+      })
     },
     jumpDetail (id) {
       this.$router.push({
@@ -74,9 +105,21 @@ export default {
           response.data.value.list.forEach(item => {
             this.corporationList.push({
               id: item.id,
-              name: item.name
+              name: item.name,
+              examine: item.examine
             })
           })
+        }
+      })
+    },
+    getViewUser () {
+      this.$store.dispatch('viewUser', {
+        params: {
+          id: this.studentId
+        }
+      }).then(response => {
+        if (response.data && response.data.errCode === 0) {
+          this.$storage.set('userInfo', response.data.value)
         }
       })
     }
@@ -84,6 +127,8 @@ export default {
   created () {
     this.getCorporationList()
     this.isAdmin = this.$storage.get('userInfo').isAdmin
+    this.studentId = this.$storage.get('userInfo').id
+    this.corportationId = this.$storage.get('userInfo').corporationId
   }
 }
 </script>
@@ -128,6 +173,10 @@ export default {
 .corporation-list__item-name {
   font-size: 20px;
   color: #409EFF;
+
+  span {
+    color: red;
+  }
 }
 
 .corporation-txt {
@@ -140,5 +189,10 @@ export default {
     color: #666666;
     font-size: 14px;
   }
+}
+
+.like-corporation {
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid #ccc;
 }
 </style>
