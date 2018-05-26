@@ -1,5 +1,14 @@
 <template>
+<div class="wrap">
+  <div v-if="show" class="text">
+    <span
+      v-for="(item, index) in corporationCount"
+      :key="index">
+      {{ item.name }} : {{ item.value }}票<br>
+      </span>
+  </div>
   <div class="corporation-statistics" ref="corporationStatistics"></div>
+</div>
 </template>
 <script>
 import echarts from 'echarts'
@@ -11,7 +20,8 @@ export default {
     return {
       corporationStatisticsChart: null,
       ranks: [],
-      corporationCount: []
+      corporationCount: [],
+      show: false
     }
   },
   methods: {
@@ -71,14 +81,28 @@ export default {
     setTimeout(() => {
       corporationStatisticsOption.series[0].data = this.corporationCount
       this.corporationStatisticsChart.setOption(corporationStatisticsOption)
+      this.show = true
     }, 2000)
   }
 }
 </script>
 <style lang="less" scoped>
+.wrap {
+  position: relative;
+}
+
 .corporation-statistics {
   height: 400px;
   background-color: #ffffff;
   border-radius: 10px;
+}
+
+.text {
+  position: absolute;
+  z-index: 5;
+  top: 180px;
+  left: 50px;
+  font-size: 25px;
+  color: #409EFF;
 }
 </style>

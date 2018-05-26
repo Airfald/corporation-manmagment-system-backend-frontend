@@ -1,29 +1,24 @@
 const activityRank = {
-  // color: ['#fcb23c', '#89d13b', '#64b6fe', '#d7c7cc'],
-  title: {
-    text: '社团举办活动统计'
-  },
+  color: ['#fcb23c', '#89d13b', '#64b6fe', '#c7c7cc'],
   tooltip: {
     trigger: 'item',
-    formatter: '{b} : {c}个 ({d}%)'
+    formatter: '{b} : {c} ({d}%)'
+  },
+  legend: {
+    data: ['男', '女'],
+    show: true
   },
   series: [
     {
       type: 'pie',
       radius: '65%',
-      center: ['50%', '50%'],
+      center: ['60%', '50%'],
       data: [{
-        name: '社团个数',
+        name: '男',
         value: 12
       }, {
-        name: '活动个数',
+        name: '女',
         value: 17
-      }, {
-        name: '社团人数',
-        value: 15
-      }, {
-        name: '社团留言',
-        value: 20
       }],
       label: {
         normal: {

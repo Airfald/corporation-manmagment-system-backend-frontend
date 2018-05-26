@@ -37,10 +37,16 @@ export default {
           name: 'home'
         }
       }, {
-        name: '社团',
+        name: '所有社团',
         key: 'corporation',
         route: {
           name: 'corporation-list'
+        }
+      }, {
+        name: '我的社团',
+        key: 'corporation',
+        route: {
+          name: 'corporation-my'
         }
       }, {
         name: '活动',

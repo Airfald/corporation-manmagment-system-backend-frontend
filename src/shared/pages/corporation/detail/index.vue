@@ -10,13 +10,25 @@
       </div>
       <div class="mt15" v-if="examine"><el-button type="primary" @click="joinCorportation">赶紧加入我们吧！</el-button></div>
       <div class="mt15" v-if="!examine"><el-button type="primary" @click="examineCorporation">审批通过</el-button></div>
+      <div class="statistics-analysis" v-if="examine">
+        <activity-rank></activity-rank>
+      </div>
+      <div v-if="examine">
+        <polygonal-line :date="date" :number="number"></polygonal-line>
+      </div>
   </div>
 </template>
 
 <script>
 import getComponentName from 'shared@/config/components-define'
+import ActivityRank from './activityRank'
+import polygonalLine from './polygonalLine'
 export default {
   name: getComponentName('corporation-detail'),
+  components: {
+    ActivityRank,
+    polygonalLine
+  },
   props: {
     corporationId: {
       type: Number
@@ -29,7 +41,9 @@ export default {
       name: '',
       description: '',
       isAdmin: 0,
-      examine: false
+      examine: false,
+      date: [],
+      number: []
     }
   },
   methods: {
@@ -68,7 +82,20 @@ export default {
           this.name = response.data.value.name
           this.description = response.data.value.description
           this.examine = response.data.value.examine
+          this.getCorporationActivity(this.name)
         }
+      })
+    },
+    getCorporationActivity (corporation) {
+      this.$store.dispatch('activity-getCorportationActivity', {
+        params: {
+          corporation: corporation
+        }
+      }).then(response => {
+        response.data.value.forEach(item => {
+          this.date.push(item.time)
+          this.number.push(Math.floor(Math.random() * 15 + 1))
+        })
       })
     },
     examineCorporation (id) {

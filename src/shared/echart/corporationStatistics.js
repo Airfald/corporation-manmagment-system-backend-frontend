@@ -5,7 +5,7 @@ const corporationStatistics = {
   },
   tooltip: {
     trigger: 'item',
-    formatter: '{a} <br/>{b} : {c}人'
+    formatter: '{a} <br/>{b} : {c}票'
   },
   toolbox: {
     feature: {
@@ -32,7 +32,7 @@ const corporationStatistics = {
       min: 0,
       max: 100,
       minSize: '0%',
-      maxSize: '100%',
+      maxSize: '150%',
       sort: 'descending',
       gap: 2,
       label: {

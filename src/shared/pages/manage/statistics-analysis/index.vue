@@ -7,8 +7,12 @@
       3. 漏斗图  举办的活动参加人数排名<br> -->
       <corportation-number></corportation-number>
       <div class="mt20 clear">
-        <activity-rank class="fl activity-rank-wrap"></activity-rank>
-        <corporation-statistics class="fr corporation-statistics-wrap"></corporation-statistics>
+        <div class="fl activity-rank-wrap">
+          <activity-rank></activity-rank>
+        </div>
+        <div class="fr corporation-statistics-wrap">
+          <corporation-statistics></corporation-statistics>
+        </div>
       </div>
     </div>
   </div>

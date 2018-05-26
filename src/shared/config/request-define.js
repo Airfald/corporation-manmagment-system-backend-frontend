@@ -173,6 +173,13 @@ config.requests = [
       url: serverHost + '/corporation/update',
       method: 'post'
     }
+  },
+  {
+    name: 'activity-getCorportationActivity',
+    config: {
+      url: serverHost + '/activity/getCorportationActivity',
+      method: 'get'
+    }
   }
 ]
 

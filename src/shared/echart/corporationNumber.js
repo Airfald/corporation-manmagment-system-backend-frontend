@@ -7,7 +7,8 @@ const corporationNumber = {
       crossStyle: {
         color: '#999'
       }
-    }
+    },
+    formatter: '{b}人数 : {c}个'
   },
   toolbox: {
     feature: {

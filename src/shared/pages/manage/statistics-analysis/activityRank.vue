@@ -9,7 +9,9 @@ export default {
   name: getComponentName('activity-rank'),
   data () {
     return {
-      activityRankChart: null
+      activityRankChart: null,
+      seriesData: [],
+      total: 0
     }
   },
   methods: {
@@ -21,58 +23,38 @@ export default {
         }
       }).then(response => {
         if (response.data && response.data.errCode === 0) {
-          activityRankOption.series[0].data[0].value = response.data.value.list.length
+          response.data.value.list.forEach(item => {
+            this.getCorporationActivity(item.name)
+          })
         }
       })
     },
-    getLeaveMessageList () {
-      this.$store.dispatch('leaveMessage-leaveMessageList', {
+    getCorporationActivity (corporation) {
+      this.$store.dispatch('activity-getCorportationActivity', {
         params: {
-          pageSize: 1000,
-          pageNum: 1
+          corporation: corporation
         }
       }).then(response => {
-        if (response.data && response.data.errCode === 0) {
-          activityRankOption.series[0].data[3].value = response.data.value.list.length
-        }
-      })
-    },
-    getActivityList () {
-      this.$store.dispatch('activity-activityList', {
-        params: {
-          pageSize: 1000,
-          pageNum: 1
-        }
-      }).then(response => {
-        if (response.data && response.data.errCode === 0) {
-          activityRankOption.series[0].data[1].value = response.data.value.list.length
-        }
-      })
-    },
-    getStudentList () {
-      this.$store.dispatch('getUserList', {
-        params: {
-          pageSize: 10000,
-          pageNum: 1
-        }
-      }).then(response => {
-        if (response.data && response.data.errCode === 0) {
-          activityRankOption.series[0].data[2].value = response.data.value.list.length
-        }
+        this.seriesData.push({
+          name: corporation,
+          value: response.data.value.length
+        })
+        this.total += response.data.value.length
       })
     }
   },
   mounted () {
     this.activityRankChart = echarts.init(this.$refs.activityRank)
     setTimeout(() => {
+      this.seriesData.forEach(item => {
+        item.name += '(' + ((item.value / this.total) * 100).toFixed(2) + '%)'
+      })
+      activityRankOption.series[0].data = this.seriesData
       this.activityRankChart.setOption(activityRankOption)
     }, 2000)
   },
   created () {
-    this.getActivityList()
-    this.getLeaveMessageList()
     this.getCorporationList()
-    this.getStudentList()
   }
 }
 </script>
